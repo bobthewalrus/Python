@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Number Game</title>
+    </head>
+    <body>
+        <h1>Number Game</h1>
+        {% if session['truth'] == 0 %}
+        <p>Congrats! That answer of {{session['answer']}} is correct! Care to play again?</p>
+        {% endif %}
+        {% if session['truth'] == 1 %}
+            <p>Guess what the winning number is!</p>
+        {% endif %}
+        {% if session['truth'] == 2 %}
+            <p>Sorry, that guess of {{session['guess']}} is too high! Try again</p>
+        {% endif %}
+        {% if session['truth'] == 3 %}
+            <p>Sorry, that guess of {{session['guess']}} is too low! Try again</p>
+        {% endif %}
+
+        {% if session['truth'] > 0 %}
+            <form method="post" action='/guess'>
+                <input type="text" name='guess' placeholder="enter number">
+                <input type="submit" name='submit' value='guess'>
+            </form>
+        {% endif %}
+
+        <button><a href="/reset">Reset</a></button>
+    </body>
+</html>
